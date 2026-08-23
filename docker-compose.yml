@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  # MCP Server (Internal Tools)
+  mcp-server:
+    build: .
+    command: python mcp_server/server.py
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  # Streamlit UI (Public Web Interface)
+  streamlit-ui:
+    build: .
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true
+    ports:
+      - "8501:8501"
+    depends_on:
+      - mcp-server
+    env_file:
+      - .env
+    restart: unless-stopped

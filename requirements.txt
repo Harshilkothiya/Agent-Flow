@@ -1,0 +1,33 @@
+# Core LLM & Agents
+langchain>=0.3.0
+langgraph>=0.4.0
+langchain-google-genai>=2.1.0
+langchain-text-splitters>=0.3.0
+
+# MCP
+fastmcp
+langchain-mcp-adapters>=0.1.0
+
+# Embeddings (HuggingFace API)
+langchain-huggingface>=0.1.0
+
+# Vector DB
+qdrant-client>=1.12.0
+
+# Postgres
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+
+# S3 (deferred, but install now)
+boto3>=1.35.0
+
+# UI
+streamlit>=1.40.0
+
+# PDF parsing
+PyPDF2>=3.0.0
+
+# Dev / Testing
+pytest>=8.0.0
+ruff>=0.8.0
+python-dotenv>=1.0.0

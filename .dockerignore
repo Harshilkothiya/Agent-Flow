@@ -1,0 +1,17 @@
+# Never let real secrets end up inside the image
+.env
+
+# Version control
+.git
+.gitignore
+
+# Python junk
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# OS junk
+.DS_Store
