@@ -27,4 +27,4 @@ mcp.tool()(generate_report)
 
 if __name__ == "__main__":
     # Run the server using SSE (Server-Sent Events) transport over HTTP
-    mcp.run(transport="http", host="127.0.0.1", port=8000)
+    mcp.run(transport="http", host="0.0.0.0", port=8000)
