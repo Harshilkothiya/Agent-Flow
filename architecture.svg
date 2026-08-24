@@ -1,0 +1,57 @@
+<svg width="820" height="560" viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+<title>Agent Flow architecture</title>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<rect x="320" y="20" width="160" height="44" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1"/>
+<text x="400" y="42" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#374151">User (browser)</text>
+<line x1="400" y1="64" x2="400" y2="100" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="200" y="100" width="400" height="64" rx="8" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1"/>
+<text x="400" y="122" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#4C1D95">Supervisor — single LLM call</text>
+<text x="400" y="144" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#4C1D95">Routes to exactly one path per question</text>
+
+<text x="400" y="182" text-anchor="middle" font-size="12" fill="#6B7280">picks ONE path — retrieval or action, not both in one turn</text>
+
+<path d="M280,164 L280,196 L230,196 L230,210" fill="none" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M520,164 L520,196 L570,196 L570,210" fill="none" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="80" y="210" width="300" height="90" rx="8" fill="#FFE8E1" stroke="#FB7C63" stroke-width="1"/>
+<text x="230" y="232" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#9A3412">Retrieval Agent</text>
+<text x="230" y="252" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9A3412">agent &#8596; tools (ReAct loop)</text>
+<text x="230" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9A3412">&#8635; can re-search until satisfied</text>
+
+<rect x="420" y="210" width="300" height="90" rx="8" fill="#FCE7F3" stroke="#EC4899" stroke-width="1"/>
+<text x="570" y="232" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#9D174D">Action Agent</text>
+<text x="570" y="252" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9D174D">agent &#8596; tools (ReAct loop)</text>
+<text x="570" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9D174D">&#8635; can re-query until satisfied</text>
+
+<line x1="230" y1="300" x2="230" y2="360" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M520,300 L520,330 L480,330 L480,360" fill="none" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M620,300 L620,330 L670,330 L670,360" fill="none" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="140" y="360" width="180" height="56" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="230" y="388" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#374151">Qdrant Cloud</text>
+
+<rect x="390" y="360" width="180" height="56" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="480" y="388" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#374151">Neon Postgres</text>
+
+<rect x="580" y="360" width="180" height="56" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="670" y="388" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#374151">AWS S3</text>
+
+<text x="400" y="450" text-anchor="middle" font-size="12" fill="#6B7280">each agent's loop returns straight to END once it has enough</text>
+<line x1="400" y1="460" x2="400" y2="484" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="320" y="484" width="160" height="44" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1"/>
+<text x="400" y="506" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#374151">Final answer (END)</text>
+
+<g transform="translate(40,540)" font-size="11" fill="#6B7280">
+<rect x="0" y="-10" width="12" height="12" fill="#EDE9FE" stroke="#7C3AED"/><text x="16" y="0">Supervisor</text>
+<rect x="110" y="-10" width="12" height="12" fill="#FFE8E1" stroke="#FB7C63"/><text x="126" y="0">Reasoning agent</text>
+<rect x="250" y="-10" width="12" height="12" fill="#FCE7F3" stroke="#EC4899"/><text x="266" y="0">Reasoning agent</text>
+<rect x="390" y="-10" width="12" height="12" fill="#F3F4F6" stroke="#9CA3AF" stroke-dasharray="4 3"/><text x="406" y="0">External managed service</text>
+</g>
+</svg>
