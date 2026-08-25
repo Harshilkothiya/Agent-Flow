@@ -1,5 +1,6 @@
-from db.qdrant_client import client, COLLECTION_NAME
+from db.qdrant_client import COLLECTION_NAME, client
 from rag.embeddings import embed_text
+
 
 def retrieve(query: str, top_k: int = 5) -> list[dict]:
     """

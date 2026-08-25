@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 import warnings
 
 # Suppress annoying warnings (like the Pydantic one)
@@ -14,10 +14,10 @@ from fastmcp import FastMCP
 mcp = FastMCP("AgentPlatform")
 
 # Import our tools
+from mcp_server.tools.generate_report import generate_report
+from mcp_server.tools.query_structured_data import query_structured_data
 from mcp_server.tools.search_documents import search_documents
 from mcp_server.tools.summarize_document import summarize_document
-from mcp_server.tools.query_structured_data import query_structured_data
-from mcp_server.tools.generate_report import generate_report
 
 # Register the tools with the MCP server
 mcp.tool()(search_documents)

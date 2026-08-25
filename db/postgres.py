@@ -1,7 +1,9 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import create_engine, Column, String, DateTime, Boolean, Text
+
+from sqlalchemy import Boolean, Column, DateTime, String, Text, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+
 from config import Config
 
 Base = declarative_base()

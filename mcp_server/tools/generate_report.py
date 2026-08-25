@@ -1,8 +1,10 @@
-from db.postgres import SessionLocal, Report
-from rag.retriever import retrieve
-from langchain_google_genai import ChatGoogleGenerativeAI
-from config import Config
 import uuid
+
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+from config import Config
+from db.postgres import Report, SessionLocal
+from rag.retriever import retrieve
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.0-flash",

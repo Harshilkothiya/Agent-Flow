@@ -3,7 +3,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from db.postgres import init_db, SessionLocal, Document, QueryLog
+from db.postgres import Document, QueryLog, SessionLocal, init_db
 from mcp_server.tools.query_structured_data import query_structured_data
 
 

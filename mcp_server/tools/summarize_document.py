@@ -1,4 +1,5 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
+
 from config import Config
 
 # Initialize the Gemini model for summarization

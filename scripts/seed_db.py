@@ -1,11 +1,12 @@
-import sys
 import os
+import sys
 
 # Add parent directory to path so we can import config and db modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from db.postgres import init_db, SessionLocal, Document
+from db.postgres import Document, SessionLocal, init_db
 from db.qdrant_client import init_qdrant
+
 
 def seed():
     print("Initializing Relational Database (Postgres/SQLite)...")

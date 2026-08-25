@@ -1,9 +1,11 @@
-import sys
 import os
+import sys
+
 # Ensure we can import our rag module
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from rag.retriever import retrieve
+
 
 def search_documents(query: str, top_k: int = 5) -> str:
     """

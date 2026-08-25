@@ -1,4 +1,5 @@
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
+
 from config import Config
 
 # Use Hugging Face Inference API for embeddings instead of local execution.

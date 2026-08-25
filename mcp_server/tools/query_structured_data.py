@@ -1,4 +1,5 @@
-from db.postgres import SessionLocal, Document, QueryLog
+from db.postgres import Document, QueryLog, SessionLocal
+
 
 def query_structured_data(question_type: str) -> str:
     """

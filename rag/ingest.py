@@ -1,11 +1,12 @@
 import os
 import uuid
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from PyPDF2 import PdfReader
-
-from db.postgres import SessionLocal, Document
-from db.qdrant_client import client, COLLECTION_NAME
 from qdrant_client.http.models import PointStruct
+
+from db.postgres import Document, SessionLocal
+from db.qdrant_client import COLLECTION_NAME, client
 from rag.embeddings import embed_batch
 
 # We split large text into chunks of 512 characters, keeping 50 characters of overlap 

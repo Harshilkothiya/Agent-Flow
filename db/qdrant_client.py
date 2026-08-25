@@ -1,6 +1,8 @@
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import Distance, VectorParams
+
 from config import Config
+
 
 def get_qdrant_client():
     if not Config.QDRANT_API_KEY and ("localhost" in Config.QDRANT_URL or "127.0.0.1" in Config.QDRANT_URL):

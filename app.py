@@ -1,8 +1,10 @@
-import streamlit as st
 import asyncio
 import logging
 import os
 import tempfile
+
+import streamlit as st
+
 from agents.orchestrator import run_agent
 from rag.ingest import ingest_document
 
