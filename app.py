@@ -21,26 +21,25 @@ with st.sidebar:
     
     uploaded_file = st.file_uploader("Upload a PDF or TXT file", type=["pdf", "txt"])
     
-    if uploaded_file is not None:
-        if st.button("Process Document"):
-            with st.spinner("Chunking, embedding, and storing in database..."):
-                # 1. Save uploaded file temporarily
-                temp_dir = tempfile.gettempdir()
-                temp_path = os.path.join(temp_dir, uploaded_file.name)
-                
-                with open(temp_path, "wb") as f:
-                    f.write(uploaded_file.getbuffer())
-                
-                try:
-                    # 2. Ingest the document using our RAG pipeline
-                    ingest_document(temp_path)
-                    st.success(f"Successfully processed '{uploaded_file.name}'!")
-                except Exception as e:
-                    st.error(f"Error during ingestion: {e}")
-                finally:
-                    # 3. Delete the temporary raw file
-                    if os.path.exists(temp_path):
-                        os.remove(temp_path)
+    if uploaded_file is not None and st.button("Process Document"):
+        with st.spinner("Chunking, embedding, and storing in database..."):
+            # 1. Save uploaded file temporarily
+            temp_dir = tempfile.gettempdir()
+            temp_path = os.path.join(temp_dir, uploaded_file.name)
+            
+            with open(temp_path, "wb") as f:
+                f.write(uploaded_file.getbuffer())
+            
+            try:
+                # 2. Ingest the document using our RAG pipeline
+                ingest_document(temp_path)
+                st.success(f"Successfully processed '{uploaded_file.name}'!")
+            except Exception as e:  # noqa: BLE001
+                st.error(f"Error during ingestion: {e}")
+            finally:
+                # 3. Delete the temporary raw file
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
 
 # Initialize chat history
 if "messages" not in st.session_state:

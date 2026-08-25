@@ -21,6 +21,8 @@ from agents.retrieval_agent import build_retrieval_graph
 from agents.action_agent import build_action_graph
 from config import Config
 
+logger = logging.getLogger(__name__)
+
 # ---------------------------------------------------------
 # Main Orchestrator (The Boss)
 # ---------------------------------------------------------
@@ -31,7 +33,7 @@ class OrchestratorState(TypedDict):
 llm = ChatGoogleGenerativeAI(model="gemini-3.6-flash", api_key=Config.GEMINI_API_KEY)
 
 async def run_agent(question: str):
-    async with mcp_session() as (session, tools):
+    async with mcp_session() as (_session, tools):
         
         retrieval_app = build_retrieval_graph(tools)
         action_app = build_action_graph(tools)
@@ -58,12 +60,12 @@ async def run_agent(question: str):
                 return {"messages": [response], "next_step": "end"}
 
         async def call_retrieval(state: OrchestratorState):
-            logging.info("ROUTED TO: Retrieval Agent")
+            logger.info("ROUTED TO: Retrieval Agent")
             result = await retrieval_app.ainvoke({"messages": state["messages"]})
             return {"messages": result["messages"][-1]}
 
         async def call_action(state: OrchestratorState):
-            logging.info("ROUTED TO: Action Agent")
+            logger.info("ROUTED TO: Action Agent")
             result = await action_app.ainvoke({"messages": state["messages"]})
             return {"messages": result["messages"][-1]}
 
@@ -93,7 +95,7 @@ async def main():
     print(f"Question: {question}\n")
     
     async for output in run_agent(question):
-        for node, state in output.items():
+        for state in output.values():
             if "messages" in state:
                 msg_or_list = state["messages"]
                 msg = msg_or_list[-1] if isinstance(msg_or_list, list) else msg_or_list
